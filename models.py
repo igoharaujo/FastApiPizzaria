@@ -30,16 +30,11 @@ class Usuario(Base):
 class Pedido(Base):
     __tablename__ = "pedidos"
 
-    #STATUS_PEDIDO = (
-    #    ("PENDENTE", "PENDENTE"),
-    #    ("CANCELADO", "CANCELADO"),
-    #    ("FINALIZADO", "FINALIZADO"),
-    #)
 
     id = Column("id", Integer, primary_key=True, autoincrement=True)
     status = Column("status", String)
-    usuario_id = Column("usuario_id", Integer, ForeignKey("usuarios.id"))
-    usuario = relationship("Usuario")
+    #usuario_id = Column("usuario_id", Integer, ForeignKey("usuarios.id"))
+    usuario = Column("usuario_id", ForeignKey("usuarios.id"))
     preco = Column("preco", Float)
 
     def __init__(self, status="PENDENTE", usuario=None, preco=0):
